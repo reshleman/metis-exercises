@@ -1,5 +1,4 @@
 class Card
-  attr_accessor :front, :back
 
   def initialize(attributes)
     @front = attributes[:front]
@@ -7,9 +6,13 @@ class Card
   end
 
   def display
-    puts "#{@front} - #{@back}"
+    puts "#{front} - #{back}"
   end
+
+  private
+
+  attr_accessor :front, :back
 end
 
 card = Card.new({front: "gato", back: "cat"})
-card.show_card
+card.display
