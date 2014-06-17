@@ -37,11 +37,11 @@ class OldestYoungestGame
       person = Person.new(arr[0], arr[1].to_i)
 
       if person.age > oldest.age
-        self.oldest = person
+        @oldest = person
       end
 
       if person.age < youngest.age
-        self.youngest = person
+        @youngest = person
       end
     end
   end
