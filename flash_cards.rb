@@ -1,5 +1,4 @@
 class Card
-
   def initialize(attributes)
     @front = attributes[:front]
     @back = attributes[:back]
@@ -47,5 +46,6 @@ spanish_cards = [
   Card.new({front: "rojo", back: "red"}),
   Card.new({front: "mono", back: "monkey"})
 ]
+
 spanish_deck = CardDeck.new("spanish", spanish_cards)
 spanish_deck.play
