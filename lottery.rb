@@ -6,13 +6,13 @@ class Lottery
   def play
     welcome
     get_names
-    print_winner
+    choose_winner
   end
 
   private
 
   attr_reader :names
-  
+
   def welcome
     puts "Enter in a list of names followed by a blank line to start the lottery"
   end
@@ -30,7 +30,7 @@ class Lottery
     end
   end
 
-  def print_winner
+  def choose_winner
     winner = names.sample
     puts "#{winner} wins!"
   end
