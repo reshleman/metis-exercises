@@ -6,7 +6,7 @@ class Card
     @back = attributes[:back]
   end
 
-  def show_card
+  def display
     puts "#{@front} - #{@back}"
   end
 end
