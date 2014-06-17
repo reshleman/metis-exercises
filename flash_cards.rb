@@ -17,7 +17,7 @@ class Card
 
   private
 
-  attr_accessor :front, :back
+  attr_reader :front, :back
 
   def correct?(guess)
     guess.downcase == back.downcase
@@ -38,7 +38,7 @@ class CardDeck
 
   private
 
-  attr_accessor :cards, :name
+  attr_reader :cards, :name
 end
 
 spanish_cards = [
