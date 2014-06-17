@@ -25,6 +25,8 @@ class Card
 end
 
 class CardDeck
+  attr_reader :cards, :name
+
   def initialize(name, cards)
     @name = name
     @cards = cards
@@ -35,10 +37,41 @@ class CardDeck
       card.play
     end
   end
+end
+
+class FlashCardGame
+  def initialize(decks)
+    @decks = decks
+  end
+
+  def play
+    loop do
+      welcome
+      deck = get_selected_deck
+      if deck
+        deck.play
+      else
+        break
+      end
+    end
+  end
 
   private
 
-  attr_reader :cards, :name
+  attr_reader :decks
+
+  def welcome
+    message = "Please select a deck."
+    puts message
+    puts "-" * message.size
+  end
+
+  def get_selected_deck
+    selected_deck = gets.chomp
+    decks.find do |deck|
+      deck.name.downcase == selected_deck.downcase
+    end
+  end
 end
 
 spanish_cards = [
@@ -47,5 +80,14 @@ spanish_cards = [
   Card.new({front: "mono", back: "monkey"})
 ]
 
+japanese_cards = [
+  Card.new({front: "ichi", back: "one"}),
+  Card.new({front: "ni", back: "two"}),
+  Card.new({front: "shiba", back: "dog"})
+]
+
 spanish_deck = CardDeck.new("spanish", spanish_cards)
-spanish_deck.play
+japanese_deck = CardDeck.new("japanese", japanese_cards)
+
+game = FlashCardGame.new([spanish_deck, japanese_deck])
+game.play
