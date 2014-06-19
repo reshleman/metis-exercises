@@ -24,7 +24,7 @@ class Card
   end
 end
 
-class CardDeck
+class Deck
   attr_reader :cards, :name
 
   def initialize(name, cards)
@@ -64,6 +64,10 @@ class FlashCardGame
     message = "Please select a deck."
     puts message
     puts "-" * message.size
+    decks.each do |deck|
+      print "#{deck.name} "
+    end
+    puts
   end
 
   def get_selected_deck
@@ -74,20 +78,33 @@ class FlashCardGame
   end
 end
 
-spanish_cards = [
-  Card.new({front: "gato", back: "cat"}),
-  Card.new({front: "rojo", back: "red"}),
-  Card.new({front: "mono", back: "monkey"})
-]
+class FlashCardReader
+  def initialize(input_file)
+    @file = File.open(input_file, "r")
+    @deck_count = file.gets.to_i
+  end
 
-japanese_cards = [
-  Card.new({front: "ichi", back: "one"}),
-  Card.new({front: "ni", back: "two"}),
-  Card.new({front: "shiba", back: "dog"})
-]
+  def get_decks
+    deck_count.times.map do
+      deck_name = file.gets.chomp
+      Deck.new(deck_name, get_cards)
+    end
+  end
 
-spanish_deck = CardDeck.new("spanish", spanish_cards)
-japanese_deck = CardDeck.new("japanese", japanese_cards)
+  private
 
-game = FlashCardGame.new([spanish_deck, japanese_deck])
+  attr_reader :file, :deck_count
+
+  def get_cards
+    card_count = file.gets.to_i
+    card_count.times.map do
+      front = file.gets.chomp
+      back = file.gets.chomp
+      Card.new(front: front, back: back)
+    end
+  end
+end
+
+decks = FlashCardReader.new("flash_cards_decks.txt").get_decks
+game = FlashCardGame.new(decks)
 game.play
