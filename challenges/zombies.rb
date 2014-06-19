@@ -3,31 +3,43 @@ class Scenario
     @file = file
     @dictionary_size = file.gets.to_i
     @dictionary = read_lines(dictionary_size)
+    @dictionary_alpha_runs = remove_runs(dictionary)
     @zombie_words_size = file.gets.to_i
     @zombie_words = read_lines(zombie_words_size)
+    @zombie_words_alpha_runs = remove_runs (zombie_words)
   end
 
   def decipher
-    zombie_words.each do |zombie_word|
-      print_matches(zombie_word)
+    zombie_words_alpha_runs.each do |zombie_run|
+      print_matches(zombie_run)
     end
   end
 
   private
 
-  attr_reader :file, :dictionary_size, :dictionary, :zombie_words_size, :zombie_words
+  attr_reader :file,
+              :dictionary_size,
+              :dictionary,
+              :dictionary_alpha_runs,
+              :zombie_words_size,
+              :zombie_words,
+              :zombie_words_alpha_runs
 
   def read_lines(count)
     count.times.map { file.gets.chomp }
   end
 
-  def print_matches(zombie_word)
+  def remove_runs(string_array)
+    string_array.map do |word|
+      word.squeeze.chars.sort.join #remove duplicate characters and sort
+    end
+  end
+
+  def print_matches(zombie_run_alpha)
     matches = []
-    dictionary.each do |dictionary_word|
-      haystack = dictionary_word
-      needle = /[#{Regexp.quote(zombie_word)}]{#{haystack.length}}/
-      if haystack =~ needle
-        matches << "#{haystack}?"
+    dictionary.length.times do |index|
+      if dictionary_alpha_runs[index] == zombie_run_alpha
+        matches << "#{dictionary[index]}?"
       end
     end
     if matches.length != 0
@@ -42,6 +54,7 @@ end
 
 file = File.new("io_files/zombies.in", "r")
 scenario_count = file.gets.to_i
-scenario_count.times do
+scenario_count.times do |index|
+  puts "Scenario ##{index + 1}:"
   Scenario.new(file).decipher
 end
