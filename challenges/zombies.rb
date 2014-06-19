@@ -6,12 +6,12 @@ class Scenario
     @dictionary_alpha_runs = remove_runs(dictionary)
     @zombie_words_size = file.gets.to_i
     @zombie_words = read_lines(zombie_words_size)
-    @zombie_words_alpha_runs = remove_runs (zombie_words)
+    @zombie_words_alpha_runs = remove_runs(zombie_words)
   end
 
   def decipher
-    zombie_words_alpha_runs.each do |zombie_run|
-      print_matches(zombie_run)
+    zombie_words_alpha_runs.each do |zombie_alpha_run|
+      print_matches(zombie_alpha_run)
     end
   end
 
@@ -35,10 +35,10 @@ class Scenario
     end
   end
 
-  def print_matches(zombie_run_alpha)
+  def print_matches(zombie_alpha_run)
     matches = []
     dictionary.length.times do |index|
-      if dictionary_alpha_runs[index] == zombie_run_alpha
+      if dictionary_alpha_runs[index] == zombie_alpha_run
         matches << "#{dictionary[index]}?"
       end
     end
