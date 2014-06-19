@@ -44,7 +44,7 @@ class Scenario
     end
     if matches.length != 0
       puts "Did you mean:"
-      puts matches
+      puts matches.sort
     else
       puts "No matches found."
     end
