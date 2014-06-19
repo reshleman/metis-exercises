@@ -4,7 +4,7 @@
 
 class LockerProblem
   def initialize
-    @lockers = Array.new(101, "closed")
+    @lockers = Array.new(101, false) #false = closed
     @lockers[0] = nil
   end
 
@@ -24,16 +24,16 @@ class LockerProblem
   attr_reader :lockers
 
   def toggle_locker(locker_index)
-    if(lockers[locker_index]) == "open"
-      lockers[locker_index] = "closed"
-    else
-      lockers[locker_index] = "open"
-    end
+    lockers[locker_index] = !lockers[locker_index]
   end
 
   def print_result
     1.upto(100) do |locker_index|
-      puts "#{locker_index}. #{lockers[locker_index]}"
+      if(lockers[locker_index])
+        puts "#{locker_index}. open"
+      else
+        puts "#{locker_index}. closed"
+      end
     end
   end
 end
