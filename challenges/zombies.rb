@@ -2,16 +2,14 @@ class Scenario
   def initialize(file)
     @file = file
     @dictionary_size = file.gets.to_i
-    @dictionary = read_lines(dictionary_size)
-    @dictionary_alpha_runs = remove_runs(dictionary)
+    @dictionary = get_words_runs(dictionary_size)
     @zombie_words_size = file.gets.to_i
-    @zombie_words = read_lines(zombie_words_size)
-    @zombie_words_alpha_runs = remove_runs(zombie_words)
+    @zombie_words = get_words_runs(zombie_words_size)
   end
 
   def decipher
-    zombie_words_alpha_runs.each do |zombie_alpha_run|
-      print_matches(zombie_alpha_run)
+    zombie_words.each do |zombie_word, run|
+      print_matches(run)
     end
   end
 
@@ -20,26 +18,30 @@ class Scenario
   attr_reader :file,
               :dictionary_size,
               :dictionary,
-              :dictionary_alpha_runs,
               :zombie_words_size,
-              :zombie_words,
-              :zombie_words_alpha_runs
+              :zombie_words
 
-  def read_lines(count)
-    count.times.map { file.gets.chomp }
-  end
+  def get_words_runs(count)
+    words_hash = {}
 
-  def remove_runs(string_array)
-    string_array.map do |word|
-      word.squeeze.chars.sort.join #remove duplicate characters and sort
+    count.times do
+      word = file.gets.chomp
+      words_hash[word] = get_runs(word)
     end
+
+    words_hash
   end
 
-  def print_matches(zombie_alpha_run)
+  # Replace runs of any character with a single character, then sort
+  def get_runs(word)
+    word.squeeze.chars.sort.join
+  end
+
+  def print_matches(zombie_word_run)
     matches = []
-    dictionary.length.times do |index|
-      if dictionary_alpha_runs[index] == zombie_alpha_run
-        matches << "#{dictionary[index]}?"
+    dictionary.each do |dictionary_word, dictionary_word_run|
+      if dictionary_word_run == zombie_word_run
+        matches << "#{dictionary_word}?"
       end
     end
     if matches.length != 0
