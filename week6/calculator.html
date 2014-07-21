@@ -25,14 +25,59 @@
         return false;
       }
     </script>
+    <style>
+      body {
+        text-align: center;
+        font-family: sans-serif;
+      }
+
+      #container {
+        padding: 30px;
+        margin: 20px auto;
+        width: 800px;
+        background-color: #C0C0C0;
+        border-radius: 20px;
+      }
+
+      #container h1 {
+        margin-top: 0;
+      }
+
+      #calculator input {
+        text-align: center;
+        width: 100px;
+        font-size: 22px;
+        background-color: #090909;
+        color: #00FF00;
+        border: 0;
+      }
+
+      #calculator #submit {
+        width: 150px;
+      }
+
+      #result {
+        text-align: right;
+        margin: 10px auto;
+        padding: 8px;
+        width: 452px;
+        height: 20px;
+        background-color: #090909;
+        color: #00FF00;
+        font-size: 22px;
+      }
+    </style>
   </head>
   <body>
-    <form id="calculator" onsubmit="return calculate();">
-      <input type="text" id="left">
-      <input type="text" id="operator">
-      <input type="text" id="right">
-      <input type="submit" id="submit" value="Submit">
-    </form>
-    <div id="result"></div>
+    <div id="container">
+      <h1>Super Calculator!</h1>
+      <form id="calculator" onsubmit="return calculate();">
+        <input type="text" id="left">
+        <input type="text" id="operator">
+        <input type="text" id="right">
+        <input type="submit" id="submit" value="Submit">
+      </form>
+      <div id="result"></div>
+    </div>
   </body>
 </html>
