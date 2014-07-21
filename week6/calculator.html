@@ -9,15 +9,18 @@
         var right = parseInt(document.getElementById("right").value);
         var operator = document.getElementById("operator").value;
 
+        var result;
         if(operator == "+") {
-          alert(left + right);
+          result = left + right;
         } else if(operator == "-") {
-          alert(left - right);
+          result = left - right;
         } else if(operator == "*") {
-          alert(left * right);
+          result = left * right;
         } else if(operator == "/") {
-          alert(left / right);
+          result = left / right;
         }
+
+        document.getElementById("result").innerHTML = result;
 
         return false;
       }
@@ -30,5 +33,6 @@
       <input type="text" id="right">
       <input type="submit" id="submit" value="Submit">
     </form>
+    <div id="result"></div>
   </body>
 </html>
