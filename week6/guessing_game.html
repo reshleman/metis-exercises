@@ -10,6 +10,41 @@
         font-size: 1.5em;
       }
 
+      h1 {
+        padding: 0px;
+        margin: 30px;
+      }
+
+      #result {
+        font-size: 1.2em;
+        padding: 8px 10px;
+        margin: 10px auto;
+        width: 600px;
+        height: 25px;
+        color: #EEE;
+        border-radius: 10px;
+        text-shadow: 0 1px 1px rgba(0,0,0,.3);
+        box-shadow: 0 1px 2px rgba(0,0,0,.2);
+      }
+
+      #result.no-result {
+        display: none;
+        background: #999;
+        background-image: linear-gradient(#555, #999);
+      }
+
+      #result.correct {
+        display: block;
+        background: #008000;
+        background-image: linear-gradient(#008000, #006000);
+      }
+
+      #result.incorrect {
+        display: block;
+        background: #CC0033;
+        background-image: linear-gradient(#CC0000, #990000)
+      }
+
       form {
         padding: 15px 0;
       }
@@ -18,7 +53,7 @@
         font-size: 1em;
         padding: 5px 10px;
         margin: 0 5px;
-        color: #d9eef7;
+        color: #FFF;
         border: solid 1px #0076a3;
         border-radius: 10px;
         background: #0095cd;
@@ -32,14 +67,28 @@
         background-image: linear-gradient(#0095cc, #00678e);
       }
     </style>
+    <script>
+      function playGame(clicked_id) {
+        if(clicked_id == "capybara") {
+          document.getElementById("result").innerHTML = "Correct";
+          document.getElementById("result").className = "correct";
+        } else {
+          document.getElementById("result").innerHTML = "Incorrect";
+          document.getElementById("result").className = "incorrect";
+        }
+
+        return false;
+      }
+    </script>
   </head>
   <body>
     <div id="container">
       <h1>Capybara or Guinea Pig?</h1>
+      <div id="result" class="no-result">Click a Button to Play</div>
       <img src="http://38.media.tumblr.com/3b0eca1bbd899ca1e9b0e5038d6dcded/tumblr_mrt5nyeD1K1r03kk7o1_500.jpg">
       <form id="guessing_game">
-        <input id="capybara" type="button" value="Capybara" onclick="alert('Correct!')">
-        <input id="guinea_pig" type="button" value="Guinea Pig" onclick="alert('Incorrect.')">
+        <input id="capybara" type="button" value="Capybara" onclick="playGame(this.id)">
+        <input id="guinea_pig" type="button" value="Guinea Pig" onclick="playGame(this.id)">
       </form>
     </div>
   </body>
