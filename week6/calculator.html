@@ -29,6 +29,7 @@
       body {
         text-align: center;
         font-family: sans-serif;
+        background-color: #EEE;
       }
 
       #container {
@@ -37,6 +38,7 @@
         width: 800px;
         background-color: #C0C0C0;
         border-radius: 20px;
+        box-shadow: 4px 4px 5px #888888;
       }
 
       #container h1 {
@@ -45,11 +47,11 @@
 
       #calculator input {
         text-align: center;
-        width: 100px;
+        width: 96px;
         font-size: 22px;
-        background-color: #090909;
+        background-color: #404040;
         color: #00FF00;
-        border: 0;
+        border: 3px solid black;
       }
 
       #calculator #submit {
@@ -59,10 +61,11 @@
       #result {
         text-align: right;
         margin: 10px auto;
-        padding: 8px;
-        width: 452px;
+        border: 4px solid black;
+        padding: 3px;
+        width: 462px;
         height: 20px;
-        background-color: #090909;
+        background-color: #404040;
         color: #00FF00;
         font-size: 22px;
       }
@@ -75,7 +78,7 @@
         <input type="text" id="left">
         <input type="text" id="operator">
         <input type="text" id="right">
-        <input type="submit" id="submit" value="Submit">
+        <input type="submit" id="submit" value="Calculate">
       </form>
       <div id="result"></div>
     </div>
