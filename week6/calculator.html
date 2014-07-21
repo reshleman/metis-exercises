@@ -5,9 +5,23 @@
     <title>My Calculator</title>
     <script>
       function calculate() {
+        var left = parseInt(document.getElementById("left").value);
+        var right = parseInt(document.getElementById("right").value);
+        var operator = document.getElementById("operator").value;
+
+        if(operator == "+") {
+          alert(left + right);
+        } else if(operator == "-") {
+          alert(left - right);
+        } else if(operator == "*") {
+          alert(left * right);
+        } else if(operator == "/") {
+          alert(left / right);
+        }
+
         return false;
       }
-     </script>
+    </script>
   </head>
   <body>
     <form id="calculator" onsubmit="return calculate();">
