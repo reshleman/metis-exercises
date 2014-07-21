@@ -51,11 +51,11 @@
         box-shadow: 8px 8px 4px rgba(0,0,0,.4);
       }
 
-      form {
+      div#buttons {
         padding: 15px 0;
       }
 
-      input[type="button"] {
+      button {
         font-size: 1em;
         padding: 5px 10px;
         margin: 0 5px;
@@ -68,23 +68,24 @@
         box-shadow: 0 1px 2px rgba(0,0,0,.2);
       }
 
-      input[type="button"]:hover {
+      button:hover {
         background: #007ead;
         background-image: linear-gradient(#0095cc, #00678e);
       }
     </style>
-    <script>
-      function playGame(clicked_id) {
-        if(clicked_id == "capybara") {
-          document.getElementById("result").innerHTML = "Correct";
-          document.getElementById("result").className = "correct";
-        } else {
-          document.getElementById("result").innerHTML = "Incorrect";
-          document.getElementById("result").className = "incorrect";
-        }
-
-        return false;
-      }
+    <script src="jquery-1.11.1.js"></script>
+    <script type="text/javascript">
+      $(function() {
+        $("button").click(function() {
+          if(this.id == "capybara") {
+            $("#result").html("Correct");
+            $("#result").attr("class", "correct");
+          } else {
+            $("#result").html("Incorrect");
+            $("#result").attr("class", "incorrect");
+          }
+        });
+      });
     </script>
   </head>
   <body>
@@ -92,10 +93,10 @@
       <h1>Capybara or Guinea Pig?</h1>
       <div id="result" class="no-result">Click a Button to Play</div>
       <img src="http://38.media.tumblr.com/3b0eca1bbd899ca1e9b0e5038d6dcded/tumblr_mrt5nyeD1K1r03kk7o1_500.jpg">
-      <form id="guessing_game">
-        <input id="capybara" type="button" value="Capybara" onclick="playGame(this.id)">
-        <input id="guinea_pig" type="button" value="Guinea Pig" onclick="playGame(this.id)">
-      </form>
+      <div id="buttons">
+        <button id="capybara">Capybara</button>
+        <button id="guinea_pig">Guinea Pig</button>
+      </div>
     </div>
   </body>
 </html>
