@@ -103,8 +103,8 @@
         });
       }
 
-      function isCorrect(id) {
-        return id == images[currentImage].kind
+      function isCorrect(kind) {
+        return kind === images[currentImage].kind
       }
 
       function handleCorrect() {
