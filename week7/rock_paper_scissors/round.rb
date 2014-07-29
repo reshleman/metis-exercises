@@ -2,7 +2,7 @@ require_relative 'moves'
 
 class Round
   def initialize
-    @user_move = get_user_move until valid_move?
+    @user_move = get_user_move until valid_user_move?
     @ai_move = get_ai_move
   end
 
@@ -20,7 +20,7 @@ class Round
     "S" => Scissors
   }
 
-  def valid_move?
+  def valid_user_move?
     VALID_MOVES.values.include?(user_move)
   end
 
@@ -30,18 +30,19 @@ class Round
   end
 
   def get_ai_move
-    @ai_move = VALID_MOVES.values.sample
+    VALID_MOVES.values.sample
   end
 
   def print_result
     puts "You played #{user_move}"
     puts "AI played #{ai_move}"
-    if ai_move == user_move
-      puts "Tie"
-    elsif ai_move.beats?(user_move)
-      puts "AI wins"
-    else
-      puts "You win"
+    puts compare_moves
+  end
+
+  def compare_moves
+    if ai_move == user_move then "tie"
+    elsif ai_move.beats?(user_move) then "AI wins"
+    else "You win"
     end
   end
 end
