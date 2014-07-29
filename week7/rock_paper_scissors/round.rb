@@ -1,3 +1,5 @@
+require_relative 'moves'
+
 class Round
   def initialize
     @user_move = get_user_move until valid_move?
@@ -12,30 +14,31 @@ class Round
 
   attr_reader :user_move, :ai_move
 
-  VALID_MOVES = %w(R P S)
+  VALID_MOVES = {
+    "R" => Rock,
+    "P" => Paper,
+    "S" => Scissors
+  }
 
   def valid_move?
-    VALID_MOVES.include?(user_move)
+    VALID_MOVES.values.include?(user_move)
   end
 
   def get_user_move
     print "Your move? (R/P/S, q to quit) > "
-    @user_move = gets.chomp.upcase
+    VALID_MOVES[gets.chomp.upcase] || nil
   end
 
   def get_ai_move
-    @ai_move = VALID_MOVES[rand(VALID_MOVES.count)]
+    @ai_move = VALID_MOVES.values.sample
   end
 
   def print_result
+    puts "You played #{user_move}"
     puts "AI played #{ai_move}"
     if ai_move == user_move
       puts "Tie"
-    elsif(
-      (ai_move == "P" && user_move == "R") ||
-      (ai_move == "R" && user_move == "S") ||
-      (ai_move == "S" && user_move == "P")
-    )
+    elsif ai_move.beats?(user_move)
       puts "AI wins"
     else
       puts "You win"
