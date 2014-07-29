@@ -46,5 +46,3 @@ class Round
     end
   end
 end
-
-Round.new.play

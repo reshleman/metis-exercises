@@ -6,8 +6,7 @@ class BaseMove
   end
 end
 
-class Scissors < BaseMove
-end
+class Scissors < BaseMove; end
 
 class Rock < BaseMove
   WINS_AGAINST = [Scissors]
