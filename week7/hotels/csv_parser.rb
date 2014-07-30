@@ -1,23 +1,23 @@
 require 'csv'
 
-class CSVReader
-  def initialize(filename, type = Hotel)
-    @type = type
+class CSVParser
+  def initialize(filename, object_type = Hotel)
+    @object_type = object_type
     @csv_file = CSV.read(filename, headers: true)
   end
 
   def get_objects()
     Array.new(csv_file.length).map.with_index do |x, row_index|
-      create_object(csv_file[row_index])
+      row_as_object(csv_file[row_index])
     end
   end
 
   private
 
-  attr_reader :csv_file, :type
+  attr_reader :csv_file, :object_type
 
-  def create_object(row)
-    type.new(*row_as_array(row))
+  def row_as_object(row)
+    object_type.new(*row_as_array(row))
   end
 
   def row_as_array(row)
@@ -27,6 +27,3 @@ class CSVReader
   end
 end
 
-require_relative 'hotel'
-
-CSVReader.new("hotels.csv").get_objects.each { |object| puts object.name }
