@@ -8,10 +8,12 @@ class UserPrompter
   end
 
   def prompt
-    display_prompt
-    get_response
-    execute_query
-    print_result
+    until current_query == "q" do
+      display_prompt
+      get_response
+      execute_query
+      print_result
+    end
   end
 
   private
@@ -31,6 +33,8 @@ class UserPrompter
   end
 
   def print_result
-    puts current_result.inspect
+    puts
+    puts current_result
+    puts
   end
 end
