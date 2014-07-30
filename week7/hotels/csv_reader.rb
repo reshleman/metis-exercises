@@ -7,11 +7,9 @@ class CSVReader
   end
 
   def get_objects()
-    objects = []
-    csv_file.each do |row|
-      objects << create_object(row)
+    Array.new(csv_file.length).map.with_index do |x, row_index|
+      create_object(csv_file[row_index])
     end
-    objects
   end
 
   private
@@ -23,8 +21,8 @@ class CSVReader
   end
 
   def row_as_array(row)
-    Array.new(csv_file.headers.count).map.with_index do |field, index|
-      row[index]
+    Array.new(csv_file.headers.size).map.with_index do |x, col_index|
+      row[col_index]
     end
   end
 end
