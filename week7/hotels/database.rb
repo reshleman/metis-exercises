@@ -1,8 +1,11 @@
 require_relative 'csv_parser'
 
 class Database
-  def initialize(type = Hotel)
-    @type = type
+  def initialize(options = {})
+    @klass = options[:type] || Hotel
+    @null_klass = options[:null_type] || Object.const_get("Null#{klass}")
+    @filename = options[:filename] || "hotels.csv"
+
     @objects = load_database
   end
 
@@ -10,17 +13,17 @@ class Database
     query_field = query_params.keys.first
     query_string = query_params[query_field]
 
-    objects.select do |object|
+    objects.find do |object|
       object.send(query_field) == query_string
-    end
+    end || null_klass.new
   end
 
   private
 
-  attr_reader :type, :objects
+  attr_reader :klass, :null_klass, :filename, :objects
 
   def load_database
-    CSVParser.new("hotels.csv", type).get_objects
+    CSVParser.new(filename, klass).get_objects
   end
 end
 

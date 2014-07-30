@@ -23,3 +23,9 @@ class Hotel
     single_rooms.to_i + double_rooms.to_i
   end
 end
+
+class NullHotel
+  def to_s
+    "No property found"
+  end
+end
