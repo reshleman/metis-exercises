@@ -3,12 +3,12 @@ require_relative 'digit_extractor'
 class Hotel
   attr_reader :name
 
-  def initialize(name, city, phone, single_rooms, double_rooms)
-    @name = name
-    @city = city
-    @phone = phone
-    @single_rooms = DigitExtractor.new(single_rooms).extract
-    @double_rooms = DigitExtractor.new(double_rooms).extract
+  def initialize(options)
+    @name = options.fetch(:hotel)
+    @city = options.fetch(:city)
+    @phone = options.fetch(:phone_number)
+    @single_rooms = DigitExtractor.new(options.fetch(:number_of_singles)).extract
+    @double_rooms = DigitExtractor.new(options.fetch(:number_of_doubles)).extract
   end
 
   def to_s
