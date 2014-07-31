@@ -40,7 +40,7 @@ Larger projects (i.e., everything in Rails) from Metis each live in a separate r
 
 ### Week 7
 
-* Refactoring
+* [Exercises to practice refactoring](https://github.com/reshleman/metis-exercises/tree/master/week7)
 
 ### Weeks 8-9
 
