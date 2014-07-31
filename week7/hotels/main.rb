@@ -1,6 +1,6 @@
 require_relative 'database'
-require_relative 'user_prompter'
+require_relative 'search_engine'
 
 database = Database.new()
 
-UserPrompter.new(database).prompt
+SearchEngine.new(database).prompt

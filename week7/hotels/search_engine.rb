@@ -1,8 +1,11 @@
 require_relative 'database'
 
-class UserPrompter
-  def initialize(database)
+class SearchEngine
+  def initialize(database, options = {})
     @database = database || Database.new()
+    @prompt_text = options[:prompt_text] || "What property? > "
+    @search_field = options[:search_field] || :name
+
     @current_query = ""
     @current_result = ""
   end
@@ -18,10 +21,10 @@ class UserPrompter
 
   private
 
-  attr_reader :database, :current_query, :current_result
+  attr_reader :database, :prompt_text, :search_field, :current_query, :current_result
 
   def display_prompt
-    print "What property? > "
+    print prompt_text
   end
 
   def get_response
@@ -29,7 +32,7 @@ class UserPrompter
   end
 
   def execute_query
-    @current_result = database.find_by(name: current_query)
+    @current_result = database.find_by(search_field => current_query)
   end
 
   def print_result
