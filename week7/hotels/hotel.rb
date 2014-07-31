@@ -1,3 +1,5 @@
+require_relative 'digit_extractor'
+
 class Hotel
   attr_reader :name
 
@@ -5,8 +7,8 @@ class Hotel
     @name = name
     @city = city
     @phone = phone
-    @single_rooms = single_rooms
-    @double_rooms = double_rooms
+    @single_rooms = DigitExtractor.new(single_rooms).extract
+    @double_rooms = DigitExtractor.new(double_rooms).extract
   end
 
   def to_s
