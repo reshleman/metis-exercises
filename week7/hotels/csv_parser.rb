@@ -1,9 +1,9 @@
 require 'csv'
 
 class CSVParser
-  def initialize(filename, object_type = Hotel)
-    @object_type = object_type
-    @csv_file = CSV.read(filename, headers: true)
+  def initialize(filename, klass = Hotel)
+    @klass = klass
+    @csv_file = CSV.table(filename)
   end
 
   def get_objects()
@@ -14,10 +14,10 @@ class CSVParser
 
   private
 
-  attr_reader :csv_file, :object_type
+  attr_reader :csv_file, :klass
 
   def row_as_object(row)
-    object_type.new(*row_as_array(row))
+    klass.new(*row_as_array(row))
   end
 
   def row_as_array(row)
