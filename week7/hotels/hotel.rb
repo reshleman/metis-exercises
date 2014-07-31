@@ -22,7 +22,7 @@ class Hotel
   attr_reader :name, :city, :phone, :single_rooms, :double_rooms
 
   def total_rooms
-    single_rooms.to_i + double_rooms.to_i
+    single_rooms + double_rooms
   end
 end
 

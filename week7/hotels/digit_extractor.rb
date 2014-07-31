@@ -4,7 +4,7 @@ class DigitExtractor
   end
 
   def extract
-    str.chars.select { |char| is_digit?(char) }.join
+    str.chars.select { |char| is_digit?(char) }.join.to_i
   end
 
   private
