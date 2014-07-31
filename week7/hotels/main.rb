@@ -1,4 +1,3 @@
-require_relative 'hotel'
 require_relative 'database'
 require_relative 'user_prompter'
 

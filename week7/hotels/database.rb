@@ -1,3 +1,4 @@
+require_relative 'hotel'
 require_relative 'csv_parser'
 
 class Database
