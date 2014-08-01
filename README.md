@@ -41,6 +41,7 @@ Larger projects (i.e., everything in Rails) from Metis each live in a separate r
 ### Week 7
 
 * [Exercises to practice refactoring](https://github.com/reshleman/metis-exercises/tree/master/week7)
+* Basic introduction to writing tests, using [Shoutr](https://github.com/reshleman/shoutr)*
 
 ### Weeks 8-9
 
