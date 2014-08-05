@@ -43,9 +43,13 @@ Larger projects (i.e., everything in Rails) from Metis each live in a separate r
 * [Exercises to practice refactoring](https://github.com/reshleman/metis-exercises/tree/master/week7)
 * Basic introduction to writing tests, using [Shoutr](https://github.com/reshleman/shoutr)*
 
-### Weeks 8-9
+### Week 8
 
-* Group Project
+* Group Project 1: [Craigstr](https://github.com/reshleman/craigstr)*, a Craigslist clone.
+
+### Week 9
+
+* Group Project 2
 
 ### Weeks 10-12
 
