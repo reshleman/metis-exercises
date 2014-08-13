@@ -49,7 +49,7 @@ Larger projects (i.e., everything in Rails) from Metis each live in a separate r
 
 ### Week 9
 
-* Group Project 2
+* Group Project 2: [Rentr](https://github.com/reshleman/rentr)*, an Airbnb clone.
 
 ### Weeks 10-12
 
