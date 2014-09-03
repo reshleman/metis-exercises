@@ -53,4 +53,4 @@ Larger projects (i.e., everything in Rails) from Metis each live in a separate r
 
 ### Weeks 10-12
 
-* Individual Project
+* Capstone Project: [BdwyCritic](http://bdwycritic.com) ([GitHub Repo](https://github.com/reshleman/bdwycritic))*, a review aggregator for Broadway shows.
